@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record id="view_purchase_order_form_inherit_notes" model="ir.ui.view">
+    <field name="name">purchase.order.form.inherit.po_version</field>
+    <field name="model">purchase.order</field>
+    <field name="inherit_id" ref="purchase.purchase_order_form"/>
+    <field name="arch" type="xml">
+      <!-- Insertion juste après le champ partner_ref -->
+      <field name="currency_id" position="after">
+        <field name="quotation_version"/>
+      </field>
+    </field>
+  </record>
+</odoo>

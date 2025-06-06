@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_my_anime_my_anime_user,my.animes.anime,model_my_animes_anime,base.group_user,1,1,1,1
+access_my_anime_my_anime_admin,my.animes.anime,model_my_animes_anime,base.group_system,1,1,1,1
+access_my_anime_genre_user,my.animes.genre,model_my_animes_genre,base.group_user,1,1,1,1
+access_my_anime_genre_admin,my.animes.genre,model_my_animes_genre,base.group_system,1,1,1,1
+access_my_anime_theme_user,my.animes.theme,model_my_animes_theme,base.group_user,1,1,1,1
+access_my_anime_theme_admin,my.animes.theme,model_my_animes_theme,base.group_system,1,1,1,1
+access_my_anime_season_user,my.animes.season,model_my_animes_season,base.group_user,1,1,1,1
+access_my_anime_season_admin,my.animes.season,model_my_animes_season,base.group_system,1,1,1,1

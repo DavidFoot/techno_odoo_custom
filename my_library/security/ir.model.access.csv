@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_my_library_library_book_user,library.book,model_library_book,base.group_user,1,0,0,0
+access_my_library_library_book_system,library.book,model_library_book,base.group_system,1,1,1,1
+access_my_library_library_loan_user,library.loan,model_library_loan,base.group_user,1,0,0,0
+access_my_library_library_loan_system,library.loan,model_library_loan,base.group_system,1,1,1,1
+access_my_library_library_member_user,library.member,model_library_member,base.group_user,1,0,0,0
+access_my_library_library_member_system,library.member,model_library_member,base.group_system,1,1,1,1
+access_my_library_library_tag_user,library.book.tags,model_library_book_tags,base.group_user,1,0,0,0
+access_my_library_library_tag_system,library.book.tags,model_library_book_tags,base.group_system,1,1,1,1
+access_my_library_book_category_user,library.book.category,model_library_book_category,base.group_user,1,0,0,0
+access_my_library_book_category_system,library.book.category,model_library_book_category,base.group_system,1,1,1,1

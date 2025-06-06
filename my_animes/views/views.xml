@@ -1,0 +1,58 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="my_animes_anime_form">
+            <field name="name">anime_form</field>
+            <field name="model">my.animes.anime</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group col="1">
+                                <field name="cover_image" widget="image" options="{'size': [300]}" nolabel="1"/>
+                            </group>
+                            <group col="11">
+                                <field name="label_name"/>
+                                <field name="season_id"/>
+                                <field name="original_name"/>
+                                <field name="synopsis"/>
+                                <field name="genre_ids" widget="many2many_tags"/>
+                                <field name="theme_ids" widget="many2many_tags"/>
+                                <field name="review_note" widget="priority"/>
+                                <field name="state"/>
+                                <field name="episode_count"/>
+                                <field name="commentaire"/>
+                            </group>
+
+
+                        </group>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="my_animes_anime_list">
+            <field name="name">anime_list</field>
+            <field name="model">my.animes.anime</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="label_name"/>
+                    <field name="season_id"/>
+                    <field name="theme_ids" widget="many2many_tags"/>
+                    <field name="review_note" widget="priority" readonly="1"/>
+                    <field name="state"/>
+                    <field name="episode_count" string="Episodes"/>
+                </list>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="my_animes_anime_open_list">
+            <field name="name">Mes animés</field>
+            <field name="res_model">my.animes.anime</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem name="Mes animés" id="my_animes_menu_root" web_icon="my_animes,static/description/icon.png"/>
+        <menuitem name="Mes animés" id="my_animes_menu_root_root" parent="my_animes_menu_root"/>
+        <menuitem name="Animé Liste" id="my_animes_menu_list" parent="my_animes_menu_root_root"
+                  action="my_animes_anime_open_list" sequence="1"/>
+    </data>
+</odoo>

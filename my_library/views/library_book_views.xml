@@ -1,0 +1,161 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="library_book_search">
+            <field name="name">library book search</field>
+            <field name="model">library.book</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="title"/>
+                    <field name="isbn"/>
+                    <field name="author"/>
+                    <filter string="Archived" name="filter_inactive" domain="[('active', '=', False)]"/>
+                    <filter string="Available" name="filter_available" domain="[('state', '=','Available')]"/>
+                    <filter string="Last 5 years" name="filter_5_years" domain="[('date_published', '&gt;',(context_today() + relativedelta(years=-5)).strftime('%Y-%m-%d'))]"/>
+                </search>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="library_book_list">
+            <field name="name">library book list</field>
+            <field name="model">library.book</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="sequence" widget="handle"/>
+                    <field name="title"/>
+                    <field name="isbn"/>
+                    <field name="state"/>
+                    <field name="date_published"/>
+                    <field name="quantity_available"/>
+                    <button name="add_library_book_qty" type="object" string="Add a book"/>
+                    <field name="books_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                    <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                </list>
+            </field>
+        </record>
+        <record id="library_book_list_form" model="ir.ui.view">
+            <field name="name">library book form</field>
+            <field name="model">library.book</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="add_library_book_qty" type="object" string="Add a book"/>
+                    </header>
+                    <sheet>
+                        <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                        <field name="cover" widget="image" class="oe_avatar" nolabel="1"
+                               options="{'convert_to_webp': True,'size': [300]}"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="title" readonly="0"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="author"/>
+                                <field name="summary"/>
+                                <field name="pages"/>
+                                <field name="isbn"/>
+                                <field name="quantity_available"/>
+                                <field name="date_published"/>
+                            </group>
+                            <group>
+                                <field name="state"/>
+                                <field name="price"/>
+                                <field name="books_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                <field name="color" widget="color_picker"/>
+                                <field name="category_ids" widget="many2many_tags"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Favorited By" name="favorite_books">
+                                <group name="truc_bidule" string="Truc bidule">
+                                    <field name="favorited_by_members_ids" mode="list,form" nolabel="1">
+                                        <list string="Members List">
+                                            <field name="name"/>
+                                            <field name="mail"/>
+                                        </list>
+                                        <form>
+                                            <group>
+                                                <field name="active" invisible="1"/>
+                                                <field name="name"/>
+                                                <field name="mail"/>
+                                                <field name="phone"/>
+                                                <field name="member_number"/>
+                                                <field name="subsscription_date"/>
+                                                <field name="favorite_book_id"/>
+                                            </group>
+                                        </form>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Other infos" name="other_infos">
+                                <group name="truc_bidule" string="Couverture">
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="library_book_kanban_view" model="ir.ui.view">
+            <field name="name">library book Kanban</field>
+            <field name="model">library.book</field>
+            <field name="arch" type="xml">
+                <kanban highlight_color="color" default_group_by="state" default_order="state, id">
+                        <field name="sequence" widget="handle" />
+                        <field name="state"/>
+                        <progressbar field="state" colors='{"Available": "success", "Borrowed": "warning", "Lost": "danger"}'/>
+                        <templates>
+                            <t t-name="menu">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="o_kanban_card_manage_settings row">
+                                            <div role="menuitem" aria-haspopup="true" class="col-6" name="Color">
+                                                <h5 role="menuitem" class="o_kanban_card_manage_title">
+                                                    <span>Color</span>
+                                                </h5>
+                                                <field name="color" widget="kanban_color_picker" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </t>
+                            <t t-name="card" class="flex-row">
+                                <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                                <aside class="o_kanban_aside_full">
+                                        <div class="o_kanban_image_fill position-relative w-100">
+                                            <field name="cover" alt="cover-image" class="h-100" widget="image" options="{'img_class': 'object-fit-cover'}"/>
+                                        </div>
+                                </aside>
+                                <main class="ps-2 ps-md-0">
+                                    <div class="mb-1">
+                                        <field name="title" class="mb-0 fw-bold fs-5"/>
+                                    </div>
+                                    <field name="author"/>
+                                </main>
+                            </t>
+                        </templates>
+
+
+
+
+
+
+                </kanban>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="library_book_action_window">
+            <field name="name">Library Books</field>
+            <field name="res_model">library.book</field>
+            <field name="view_mode">list,kanban,form</field>
+            <field name="search_view_id" ref="library_book_search"/>
+            <field name="context">{'default_active': True}</field>
+        </record>
+
+        <menuitem name="Ma Librairie" id="library_root" web_icon="my_library,static/description/icon.png"/>
+        <!-- menu categories -->
+        <menuitem name="Librairie" id="library_book_root" parent="library_root" action="library_book_action_window"/>
+    </data>
+</odoo>

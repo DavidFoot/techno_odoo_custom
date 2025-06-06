@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="my_animes_list_themes">
+            <field name="name">Les themes d'animés</field>
+            <field name="model">my.animes.theme</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="themes"/>
+                </list>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="my_animes_theme_open_list">
+            <field name="name">Themes</field>
+            <field name="res_model">my.animes.theme</field>
+            <field name="view_mode">list</field>
+        </record>
+        <menuitem name="Theme Management" id="my_animes_menu_theme" parent="my_animes_menu_root_root" action="my_animes_theme_open_list" sequence="3"/>
+    </data>
+</odoo>

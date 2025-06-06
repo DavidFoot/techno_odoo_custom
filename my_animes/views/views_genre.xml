@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="my_animes_list">
+            <field name="name">Les genres d'animés</field>
+            <field name="model">my.animes.genre</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="genre"/>
+                </list>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="my_animes_genre_open_list">
+            <field name="name">Genres</field>
+            <field name="res_model">my.animes.genre</field>
+            <field name="view_mode">list</field>
+        </record>
+        <menuitem name="Genre Management" id="my_animes_menu_genre" parent="my_animes_menu_root_root" action="my_animes_genre_open_list" sequence="2"/>
+    </data>
+</odoo>
