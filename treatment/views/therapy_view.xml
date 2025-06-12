@@ -1,0 +1,64 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="treatment_therapy_search">
+            <field name="name">Therapy search</field>
+            <field name="model">treatment.therapy</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="code"/>
+                    <field name="name"/>
+                    <filter string="Archived" name="filter_inactive" domain="[('active', '=', False)]"/>
+                </search>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="treatment_therapy_list">
+            <field name="name">Therapy List</field>
+            <field name="model">treatment.therapy</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="display_name"/>
+                    <field name="code"/>
+                    <field name="name"/>
+                </list>
+            </field>
+        </record>
+        <record id="treatment_therapy_form" model="ir.ui.view">
+            <field name="name">Therapy form</field>
+            <field name="model">treatment.therapy</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_button_treatment_list" type="object"
+                                    class="oe_stat_button" icon="fa-medkit">
+                                <div class="o_stat_info">
+                                    <span class="o_stat_text">Treatments</span>
+                                    <field name="treatment_count" string="" widget="statinfo"/>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="display_name" readonly="True"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="code"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="treatment_therapy_action_window">
+            <field name="name">Therapy</field>
+            <field name="res_model">treatment.therapy</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem name="Therapy" id="therapy_root" parent="treatment_treatment_root"
+                  action="treatment_therapy_action_window"/>
+    </data>
+</odoo>

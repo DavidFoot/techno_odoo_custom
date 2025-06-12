@@ -1,0 +1,59 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="treatment_treatment_search">
+            <field name="name">Treatment search</field>
+            <field name="model">treatment.treatment</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <filter string="Archived" name="filter_inactive" domain="[('active', '=', False)]"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="treatment_treatment_list">
+            <field name="name">Treatment List</field>
+            <field name="model">treatment.treatment</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="therapy_id"/>
+                    <field name="hospital_id"/>
+                    <field name="physician_id"/>
+                </list>
+            </field>
+        </record>
+        <record id="treatment_treatment_form" model="ir.ui.view">
+            <field name="name">Treatment form</field>
+            <field name="model">treatment.treatment</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Treatment name..."/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="comment"/>
+                                <field name="hospital_id"/>
+                                <field name="physician_id"/>
+                                <field name="therapy_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="treatment_treatment_action_window">
+            <field name="name">Treatment</field>
+            <field name="res_model">treatment.treatment</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        <menuitem name="Treatment" id="treatment_treatment_root" web_icon="treatment,static/description/icon.png"/>
+        <menuitem name="Treatment" id="treatment_root" parent="treatment_treatment_root" action="treatment_treatment_action_window"/>
+    </data>
+</odoo>

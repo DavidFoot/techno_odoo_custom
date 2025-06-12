@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_treatment_treatment_user,treatment.treatment,model_treatment_treatment,base.group_user,1,1,1,0
+access_treatment_treatment_admin,treatment.treatment,model_treatment_treatment,base.group_system,1,1,1,1
+access_treatment_therapy_user,treatment.therapy,model_treatment_therapy,base.group_user,1,1,1,0
+access_treatment_therapy_admin,treatment.therapy,model_treatment_therapy,base.group_system,1,1,1,1
+access_treatment_patient_user,treatment.patient,model_treatment_patient,base.group_user,1,1,1,0
+access_treatment_patient_admin,treatment.patient,model_treatment_patient,base.group_system,1,1,1,1
